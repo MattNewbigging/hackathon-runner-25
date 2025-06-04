@@ -156,7 +156,7 @@ export class AssetManager {
 function getPathPrefix() {
   // Using template strings to create url paths breaks on github pages
   // We need to manually add the required /repo/ prefix to the path if not on localhost
-  return location.hostname === "localhost" ? "" : "/repo-name-here";
+  return location.hostname === "localhost" ? "" : "/hackathon-runner-25";
 }
 
 function getUrl(path: string) {
