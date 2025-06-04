@@ -245,7 +245,7 @@ export class Player extends THREE.Object3D {
       this.createAudioFor(AudioAsset.StepC),
       this.createAudioFor(AudioAsset.StepD),
       this.createAudioFor(AudioAsset.StepE),
-    ].filter((sound) => !!sound);
+    ].filter((sound) => sound !== undefined);
 
     this.jumpSounds = [
       this.createAudioFor(AudioAsset.JumpA),
