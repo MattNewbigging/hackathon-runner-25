@@ -25,8 +25,8 @@ export class Player extends THREE.Object3D {
   private stepSounds: THREE.Audio[] = [];
   private jumpSounds: THREE.Audio[] = [];
   private landSounds: THREE.Audio[] = [];
-  airSound: THREE.Audio;
-  splatSound: THREE.Audio;
+  airSound?: THREE.Audio;
+  splatSound?: THREE.Audio;
   private stepTimer = 0;
   soundsPaused = false;
 
@@ -67,8 +67,8 @@ export class Player extends THREE.Object3D {
 
     // SFX
     this.setupAudio();
-    this.airSound = this.createAudioFor(AudioAsset.AirA)!;
-    this.splatSound = this.createAudioFor(AudioAsset.Splat)!;
+    this.airSound = this.createAudioFor(AudioAsset.AirA);
+    this.splatSound = this.createAudioFor(AudioAsset.Splat);
   }
 
   jump() {
@@ -77,10 +77,10 @@ export class Player extends THREE.Object3D {
       this.jumping = true;
       this.playAnimation(AnimationAsset.JumpStart);
       this.playRandomSound(this.jumpSounds);
-      this.airSound.stop();
+      this.airSound?.stop();
       setTimeout(() => {
         if (this.jumping && !this.soundsPaused) {
-          this.airSound.stop().play();
+          this.airSound?.stop().play();
         }
       }, 750);
     }
@@ -89,7 +89,7 @@ export class Player extends THREE.Object3D {
   land() {
     if (this.jumping || this.falling) {
       this.playAnimation(AnimationAsset.JumpEnd);
-      this.airSound.stop();
+      this.airSound?.stop();
       this.playRandomSound(this.landSounds);
 
       this.jumping = false;
@@ -103,18 +103,18 @@ export class Player extends THREE.Object3D {
     if (!this.jumping && !this.falling) {
       this.playAnimation(AnimationAsset.JumpLoop);
       this.falling = true;
-      this.airSound.stop().play();
+      this.airSound?.stop().play();
     }
   }
 
   splat() {
-    this.airSound.stop();
-    this.splatSound.stop().play();
+    this.airSound?.stop();
+    this.splatSound?.stop().play();
   }
 
   pauseSounds() {
     this.soundsPaused = true;
-    this.airSound.pause();
+    this.airSound?.pause();
   }
 
   resumeSounds() {
