@@ -245,26 +245,25 @@ export class Player extends THREE.Object3D {
       this.createAudioFor(AudioAsset.StepC),
       this.createAudioFor(AudioAsset.StepD),
       this.createAudioFor(AudioAsset.StepE),
-    ].filter((sound) => sound !== undefined);
+    ];
 
     this.jumpSounds = [
       this.createAudioFor(AudioAsset.JumpA),
       this.createAudioFor(AudioAsset.JumpB),
       this.createAudioFor(AudioAsset.JumpC),
       this.createAudioFor(AudioAsset.JumpD),
-    ].filter((sound) => !!sound);
+    ];
 
     this.landSounds = [
       this.createAudioFor(AudioAsset.LandA),
       this.createAudioFor(AudioAsset.LandB),
       this.createAudioFor(AudioAsset.LandC),
       this.createAudioFor(AudioAsset.LandD),
-    ].filter((sound) => !!sound);
+    ];
   }
 
   private createAudioFor(name: AudioAsset) {
-    const buffer = this.assetManager.audioBuffers.get(name);
-    if (!buffer) return;
+    const buffer = this.assetManager.audioBuffers.get(name)!;
 
     const sound = new THREE.Audio(this.audioListener);
     sound.setBuffer(buffer);
